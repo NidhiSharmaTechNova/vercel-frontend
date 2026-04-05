@@ -46,7 +46,7 @@ const EmailVerify = () => {
     const token = localStorage.getItem("token");
 
     const { data } = await axios.post(
-      backendUrl + '/api/auth/verify-account',
+      `${backendUrl}/api/auth/verify-account`,
       { otp },
       {
         headers: {
