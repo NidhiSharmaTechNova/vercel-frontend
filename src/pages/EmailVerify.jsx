@@ -78,25 +78,25 @@
 
 
 //   return (
-//     <div className='flex items-center justify-center min-h-screen bg-gradient-to-r from-green-200 to-green-800'>
-//       <img onClick={() => navigate('/')} src={assets.logo} alt='' className='absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer'></img>
+    // <div className='flex items-center justify-center min-h-screen bg-gradient-to-r from-green-200 to-green-800'>
+    //   <img onClick={() => navigate('/')} src={assets.logo} alt='' className='absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer'></img>
 
-//       <form onSubmit={onSubmitHandler}  className='bg-green-900 p-8 rounded-lg shadow-lg w-96 text-sm'>
+    //   <form onSubmit={onSubmitHandler}  className='bg-green-900 p-8 rounded-lg shadow-lg w-96 text-sm'>
 
-//         <h1 className='text-white text-2xl font-semibold text-center mb-4'>Email Verify OTP</h1>
-//         <p className='text-center mb-6 text-green-200'>Enter the 6-digit code sent to your email id.</p>
-//         <div className='flex justify-between mb-8' onPaste={handlePaste}>
-//           {Array(6).fill(0).map((_, index) => (
-//             <input type='text' maxLength='1' key={index} required className='w-12 h-12 bg-[#c0e2c8] text-black text-center text-xl rounded-md'
-//               ref={e => inputRefs.current[index] = e}
-//               onInput={(e) => handleInput(e, index)}
-//               onKeyDown={(e) => handleKeyDown(e, index)}
-//             ></input>
-//           ))}
-//         </div>
-//          <button className='w-full py-3 bg-gradient-to-r from-green-500 to-green-700 rounded-full'>Verify email</button>
-//       </form>
-//     </div>
+    //     <h1 className='text-white text-2xl font-semibold text-center mb-4'>Email Verify OTP</h1>
+    //     <p className='text-center mb-6 text-green-200'>Enter the 6-digit code sent to your email id.</p>
+    //     <div className='flex justify-between mb-8' onPaste={handlePaste}>
+    //       {Array(6).fill(0).map((_, index) => (
+    //         <input type='text' maxLength='1' key={index} required className='w-12 h-12 bg-[#c0e2c8] text-black text-center text-xl rounded-md'
+    //           ref={e => inputRefs.current[index] = e}
+    //           onInput={(e) => handleInput(e, index)}
+    //           onKeyDown={(e) => handleKeyDown(e, index)}
+    //         ></input>
+    //       ))}
+    //     </div>
+    //      <button className='w-full py-3 bg-gradient-to-r from-green-500 to-green-700 rounded-full'>Verify email</button>
+    //   </form>
+    // </div>
 //   )
 // }
 
@@ -115,7 +115,8 @@ const EmailVerify = () => {
 
   const navigate = useNavigate();
 
-  const { backendUrl ,isLoggedin, userData, getUserData } = useContext(AppContext);
+  const {isLoggedin, userData, getUserData } = useContext(AppContext);
+  const backendUrl = ['https://vercel-backend-3-hafe.onrender.com'] 
   axios.defaults.withCredentials = true;
 
   const inputRefs = useRef([]);
@@ -176,44 +177,63 @@ const EmailVerify = () => {
   }, [isLoggedin, userData]);
 
   return (
-    <div className='flex items-center justify-center min-h-screen bg-gradient-to-r from-green-200 to-green-800'>
+    // <div className='flex items-center justify-center min-h-screen bg-gradient-to-r from-green-200 to-green-800'>
       
-      <img 
-        onClick={() => navigate('/')} 
-        src={assets.logo} 
-        alt='' 
-        className='absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer'
-      />
+    //   <img 
+    //     onClick={() => navigate('/')} 
+    //     src={assets.logo} 
+    //     alt='' 
+    //     className='absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer'
+    //   />
 
-      <form onSubmit={onSubmitHandler} className='bg-green-900 p-8 rounded-lg shadow-lg w-96 text-sm'>
+    //   <form onSubmit={onSubmitHandler} className='bg-green-900 p-8 rounded-lg shadow-lg w-96 text-sm'>
 
-        <h1 className='text-white text-2xl font-semibold text-center mb-4'>
-          Email Verify OTP
-        </h1>
+    //     <h1 className='text-white text-2xl font-semibold text-center mb-4'>
+    //       Email Verify OTP
+    //     </h1>
 
-        <p className='text-center mb-6 text-green-200'>
-          Enter the 6-digit code sent to your email id.
-        </p>
+    //     <p className='text-center mb-6 text-green-200'>
+    //       Enter the 6-digit code sent to your email id.
+    //     </p>
 
+    //     <div className='flex justify-between mb-8' onPaste={handlePaste}>
+    //       {Array(6).fill(0).map((_, index) => (
+    //         <input
+    //           type='text'
+    //           maxLength='1'
+    //           key={index}
+    //           required
+    //           className='w-12 h-12 bg-[#c0e2c8] text-black text-center text-xl rounded-md'
+    //           ref={el => inputRefs.current[index] = el}
+    //           onInput={(e) => handleInput(e, index)}
+    //           onKeyDown={(e) => handleKeyDown(e, index)}
+    //         />
+    //       ))}
+    //     </div>
+
+    //     <button className='w-full py-3 bg-gradient-to-r from-green-500 to-green-700 rounded-full text-white'>
+    //       Verify Email
+    //     </button>
+
+    //   </form>
+    // </div>
+        <div className='flex items-center justify-center min-h-screen bg-gradient-to-r from-green-200 to-green-800'>
+      <img onClick={() => navigate('/')} src={assets.logo} alt='' className='absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer'></img>
+
+      <form onSubmit={onSubmitHandler}  className='bg-green-900 p-8 rounded-lg shadow-lg w-96 text-sm'>
+
+        <h1 className='text-white text-2xl font-semibold text-center mb-4'>Email Verify OTP</h1>
+        <p className='text-center mb-6 text-green-200'>Enter the 6-digit code sent to your email id.</p>
         <div className='flex justify-between mb-8' onPaste={handlePaste}>
           {Array(6).fill(0).map((_, index) => (
-            <input
-              type='text'
-              maxLength='1'
-              key={index}
-              required
-              className='w-12 h-12 bg-[#c0e2c8] text-black text-center text-xl rounded-md'
-              ref={el => inputRefs.current[index] = el}
+            <input type='text' maxLength='1' key={index} required className='w-12 h-12 bg-[#c0e2c8] text-black text-center text-xl rounded-md'
+              ref={e => inputRefs.current[index] = e}
               onInput={(e) => handleInput(e, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-            />
+            ></input>
           ))}
         </div>
-
-        <button className='w-full py-3 bg-gradient-to-r from-green-500 to-green-700 rounded-full text-white'>
-          Verify Email
-        </button>
-
+         <button className='w-full py-3 bg-gradient-to-r from-green-500 to-green-700 rounded-full'>Verify email</button>
       </form>
     </div>
   );

@@ -12,10 +12,11 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   // const [isEmailSent, setIsEmailSent] = useState('');
   const [isEmailSent, setIsEmailSent] = useState(false);
-  const [otp, setOtp] = useState(0);
+  const [otp, setOtp] = useState('');
   const [isOtpSubmited, setIsOtpSubmited] = useState(false);
 
-  const { backendUrl } = useContext(AppContext);
+  // const { backendUrl } = useContext(AppContext);
+  const backendUrl = ['https://vercel-backend-3-hafe.onrender.com'] 
    
   axios.defaults.withCredentials = true;
 
