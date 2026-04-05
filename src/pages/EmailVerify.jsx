@@ -180,11 +180,20 @@ const EmailVerify = () => {
     }
   };
 
+  // useEffect(() => {
+  //   if (isLoggedin && userData?.isAccountVerified) {
+  //     navigate('/');
+  //   }
+  // }, [isLoggedin, userData]);
   useEffect(() => {
-    if (isLoggedin && userData?.isAccountVerified) {
-      navigate('/');
-    }
-  }, [isLoggedin, userData]);
+  // Jab tak userData load nahi hota, kuch mat karo
+  if (!userData) return;
+  
+  // Sirf tab home bhejo jab already verified ho
+  if (isLoggedin && userData.isAccountVerified) {
+    navigate('/');
+  }
+}, [isLoggedin, userData]);
 
   return (
     // <div className='flex items-center justify-center min-h-screen bg-gradient-to-r from-green-200 to-green-800'>
