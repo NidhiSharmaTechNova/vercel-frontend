@@ -13,31 +13,60 @@ const Navbar = () => {
 
  
 
+  // const sendVerificationOtp = async () => {
+  //   try {
+  //     const token = localStorage.getItem("token");
+
+  //     const { data } = await axios.post(
+  //       `${backendUrl}/api/auth/send-verify-otp`,
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`
+  //         }
+  //       }
+  //     );
+
+  //     if (data.success) {
+  //       navigate('/email-verify');
+  //       toast.success(data.message);
+  //     } else {
+  //       toast.error(data.message);
+  //     }
+
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   }
+  // }
+
   const sendVerificationOtp = async () => {
-    try {
-      const token = localStorage.getItem("token");
+  try {
+    console.log("Verify clicked");
 
-      const { data } = await axios.post(
-        backendUrl + '/api/auth/send-verify-otp',
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
+    const token = localStorage.getItem("token");
+
+    const { data } = await axios.post(
+      `${backendUrl}/api/auth/send-verify-otp`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-      );
-
-      if (data.success) {
-        navigate('/email-verify');
-        toast.success(data.message);
-      } else {
-        toast.error(data.message);
       }
+    );
 
-    } catch (error) {
-      toast.error(error.message);
+    if (data.success) {
+      toast.success(data.message);
+      navigate("/email-verify"); // ✅ yaha shift rakho
+    } else {
+      toast.error(data.message);
     }
+
+  } catch (error) {
+    console.log(error);
+    toast.error(error.message);
   }
+};
 
   const logout = async () => {
     try {

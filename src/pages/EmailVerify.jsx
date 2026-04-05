@@ -115,10 +115,7 @@ const EmailVerify = () => {
 
   const navigate = useNavigate();
 
-  const { isLoggedin, userData, getUserData } = useContext(AppContext);
-
-  const backendUrl = "https://vercel-backend-3-hafe.onrender.com";
-
+  const { backendUrl ,isLoggedin, userData, getUserData } = useContext(AppContext);
   axios.defaults.withCredentials = true;
 
   const inputRefs = useRef([]);
