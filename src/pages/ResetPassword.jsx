@@ -48,11 +48,16 @@ const ResetPassword = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(`${backendUrl}/api/auth/send-reset-otp`, { email })
-      data.success ? toast.success(data.message) : toast.error(data.message)
-      data.success && setIsEmailSent(true);
+      if (data.success) {
+        toast.success(data.message);
+        setIsEmailSent(true);
+      } else {
+        toast.error(data.message);
+      }
 
     } catch (error) {
-      toast.error(error.message);
+      console.error("Error sending reset OTP:", error);
+      toast.error(error.response?.data?.message || error.message);
     }
   }
 

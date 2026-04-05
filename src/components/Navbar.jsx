@@ -45,6 +45,11 @@ const Navbar = () => {
 
     const token = localStorage.getItem("token");
 
+    if (!token) {
+      toast.error("No token found. Please login first.");
+      return;
+    }
+
     const { data } = await axios.post(
       `${backendUrl}/api/auth/send-verify-otp`,
       {},
@@ -57,14 +62,14 @@ const Navbar = () => {
 
     if (data.success) {
       toast.success(data.message);
-      navigate("/email-verify"); // ✅ yaha shift rakho
+      navigate("/email-verify");
     } else {
       toast.error(data.message);
     }
 
   } catch (error) {
-    console.log(error);
-    toast.error(error.message);
+    console.error("Error sending OTP:", error);
+    toast.error(error.response?.data?.message || error.message);
   }
 };
 
