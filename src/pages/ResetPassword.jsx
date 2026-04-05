@@ -12,10 +12,11 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   // const [isEmailSent, setIsEmailSent] = useState('');
   const [isEmailSent, setIsEmailSent] = useState(false);
-  const [otp, setOtp] = useState(0);
+  const [otp, setOtp] = useState('');
   const [isOtpSubmited, setIsOtpSubmited] = useState(false);
 
-  const { backendUrl } = useContext(AppContext);
+  // const { backendUrl } = useContext(AppContext);
+  const backendUrl = "https://vercel-backend-2-cgx1.onrender.com"; 
   axios.defaults.withCredentials = true;
 
 
@@ -43,18 +44,41 @@ const ResetPassword = () => {
     })
   }
 
+  // const onSubmitEmail = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const { data } = await axios.post(`${backendUrl}/api/auth/send-reset-otp`, { email })
+  //     data.success ? toast.success(data.message) : toast.error(data.message)
+  //     data.success && setIsEmailSent(true);
+
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   }
+  // }
+
   const onSubmitEmail = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post(`${backendUrl}/api/auth/send-reset-otp`, { email })
-      data.success ? toast.success(data.message) : toast.error(data.message)
-      data.success && setIsEmailSent(true);
+  e.preventDefault();
+  try {
+    const { data } = await axios.post(
+      `${backendUrl}/api/auth/send-reset-otp`,
+      { email },
+      { timeout: 30000 } // ⭐ timeout fix
+    );
 
-    } catch (error) {
-      toast.error(error.message);
+    console.log("OTP Response:", data);
+
+    if (data.success) {
+      toast.success(data.message);
+      setIsEmailSent(true);
+    } else {
+      toast.error(data.message);
     }
-  }
 
+  } catch (error) {
+    console.log("ERROR:", error);
+    toast.error(error.response?.data?.message || error.message);
+  }
+};
 
   const onSubmitOTP = async (e) => {
     e.preventDefault();
