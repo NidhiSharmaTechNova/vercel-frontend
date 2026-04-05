@@ -15,46 +15,86 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // const onSubmitHandler = async (e) => {
+  //   try {
+  //     e.preventDefault();
+
+  //     axios.defaults.withCredentials = true;
+
+  //     if (state === 'Sign Up') {
+  //       const { data } = await axios.post(backendUrl + '/api/auth/register', { name, email, password });
+
+  //       if (data.success) {
+  //         localStorage.setItem("token", data.token);
+  //         setIsLoggedin(true);
+  //         getUserData(); // 🔥 ADD THIS
+  //         navigate('/')
+  //       }
+  //       else {
+  //         toast.error(data.message)
+  //       }
+  //     } else {
+  //       const { data } = await axios.post(backendUrl + '/api/auth/login', { email, password });
+
+  //       // if (data.success) {
+  //       //   localStorage.setItem("token", data.token);
+  //       //   setIsLoggedin(true);
+  //       //   navigate('/')
+  //       // }
+  //       if (data.success) {
+  //         localStorage.setItem("token", data.token);
+  //         setIsLoggedin(true);
+  //         getUserData(); // 🔥 ADD THIS
+  //         navigate('/')
+  //       }
+  //       else {
+  //         toast.error(data.message)
+  //       }
+  //     }
+  //   } catch (error) {
+  //     toast.error(data.message)
+  //   }
+  // }
+
   const onSubmitHandler = async (e) => {
-    try {
-      e.preventDefault();
+  e.preventDefault();
 
-      axios.defaults.withCredentials = true;
+  try {
+    axios.defaults.withCredentials = true;
 
-      if (state === 'Sign Up') {
-        const { data } = await axios.post(backendUrl + '/api/auth/register', { name, email, password });
+    if (state === 'Sign Up') {
+      const { data } = await axios.post(`${backendUrl}/api/auth/register`, {
+        name, email, password
+      });
 
-        if (data.success) {
-          localStorage.setItem("token", data.token);
-          setIsLoggedin(true);
-          getUserData(); // 🔥 ADD THIS
-          navigate('/')
-        }
-        else {
-          toast.error(data.message)
-        }
+      if (data.success) {
+        localStorage.setItem("token", data.token);
+        setIsLoggedin(true);
+        getUserData();
+        navigate('/');
       } else {
-        const { data } = await axios.post(backendUrl + '/api/auth/login', { email, password });
-
-        // if (data.success) {
-        //   localStorage.setItem("token", data.token);
-        //   setIsLoggedin(true);
-        //   navigate('/')
-        // }
-        if (data.success) {
-          localStorage.setItem("token", data.token);
-          setIsLoggedin(true);
-          getUserData(); // 🔥 ADD THIS
-          navigate('/')
-        }
-        else {
-          toast.error(data.message)
-        }
+        toast.error(data.message);
       }
-    } catch (error) {
-      toast.error(data.message)
+
+    } else {
+      const { data } = await axios.post(`${backendUrl}/api/auth/login`, {
+        email, password
+      });
+
+      if (data.success) {
+        localStorage.setItem("token", data.token);
+        setIsLoggedin(true);
+        getUserData();
+        navigate('/');
+      } else {
+        toast.error(data.message);
+      }
     }
+
+  } catch (error) {
+    toast.error(error.response?.data?.message || error.message);
   }
+};
 
   return (
    
