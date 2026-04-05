@@ -15,8 +15,8 @@ const ResetPassword = () => {
   const [otp, setOtp] = useState('');
   const [isOtpSubmited, setIsOtpSubmited] = useState(false);
 
-  // const { backendUrl } = useContext(AppContext);
-  const backendUrl = "https://vercel-backend-3-hafe.onrender.com"; 
+  const { backendUrl } = useContext(AppContext);
+   
   axios.defaults.withCredentials = true;
 
 
