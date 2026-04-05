@@ -44,6 +44,7 @@ const Navbar = () => {
     console.log("Verify clicked");
 
     const token = localStorage.getItem("token");
+    console.log("sendVerificationOtp backendUrl:", backendUrl);
 
     if (!token) {
       toast.error("No token found. Please login first.");
@@ -91,17 +92,19 @@ const Navbar = () => {
       <img src={assets.logo} alt='' className='w-28 sm:w-32' />
 
       {userData
-        ? <div className='w-8 h-8 flex justify-center items-center rounded-full bg-black text-white relative group'>
-          {userData.name[0].toUpperCase()}
-          <div className='absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-10'>
-            <ul className='list-none m-0 p-2 bg-gray-100 text-sm'>
-              {userData && !userData.isAccountVerified && (
-                <li onClick={sendVerificationOtp} className='py-1 px-2 hover:bg-gray-200 cursor-pointer'>
-                  Verify email
-                </li>
-              )}
-              <li onClick={logout} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Logout</li>
-            </ul>
+        ? <div className='flex items-center gap-3'>
+          {userData && !userData.isAccountVerified && (
+            <button onClick={sendVerificationOtp} className='bg-green-500 hover:bg-green-600 text-white rounded-full px-4 py-2 text-sm'>
+              Verify email
+            </button>
+          )}
+          <div className='w-8 h-8 flex justify-center items-center rounded-full bg-black text-white relative group'>
+            {userData.name[0].toUpperCase()}
+            <div className='absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-10'>
+              <ul className='list-none m-0 p-2 bg-gray-100 text-sm'>
+                <li onClick={logout} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Logout</li>
+              </ul>
+            </div>
           </div>
         </div>
         : <button onClick={() => navigate('/login')} className='flex items-center gap-2 border border-green-500 rounded-full px-6 py-2 text-gray-800 hover:bg-green-100'>Login<img src={assets.arrow_icon} arc="" /></button>}
