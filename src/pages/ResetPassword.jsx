@@ -16,7 +16,7 @@ const ResetPassword = () => {
   const [isOtpSubmited, setIsOtpSubmited] = useState(false);
 
   // const { backendUrl } = useContext(AppContext);
-  const backendUrl = ['https://vercel-backend-3-hafe.onrender.com'] 
+  const backendUrl = ['https://vercel-backend-4-8lrm.onrender.com/'] 
    
   axios.defaults.withCredentials = true;
 
@@ -45,41 +45,41 @@ const ResetPassword = () => {
     })
   }
 
-  // const onSubmitEmail = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const { data } = await axios.post(`${backendUrl}/api/auth/send-reset-otp`, { email })
-  //     data.success ? toast.success(data.message) : toast.error(data.message)
-  //     data.success && setIsEmailSent(true);
-
-  //   } catch (error) {
-  //     toast.error(error.message);
-  //   }
-  // }
-
   const onSubmitEmail = async (e) => {
-  e.preventDefault();
-  try {
-    const { data } = await axios.post(
-      `${backendUrl}/api/auth/send-reset-otp`,
-      { email },
-      { timeout: 30000 } 
-    );
+    e.preventDefault();
+    try {
+      const { data } = await axios.post(`${backendUrl}/api/auth/send-reset-otp`, { email })
+      data.success ? toast.success(data.message) : toast.error(data.message)
+      data.success && setIsEmailSent(true);
 
-    console.log("OTP Response:", data);
-
-    if (data.success) {
-      toast.success(data.message);
-      setIsEmailSent(true);
-    } else {
-      toast.error(data.message);
+    } catch (error) {
+      toast.error(error.message);
     }
-
-  } catch (error) {
-    console.log("ERROR:", error);
-    toast.error(error.response?.data?.message || error.message);
   }
-};
+
+//   const onSubmitEmail = async (e) => {
+//   e.preventDefault();
+//   try {
+//     const { data } = await axios.post(
+//       `${backendUrl}/api/auth/send-reset-otp`,
+//       { email },
+//       { timeout: 30000 } 
+//     );
+
+//     console.log("OTP Response:", data);
+
+//     if (data.success) {
+//       toast.success(data.message);
+//       setIsEmailSent(true);
+//     } else {
+//       toast.error(data.message);
+//     }
+
+//   } catch (error) {
+//     console.log("ERROR:", error);
+//     toast.error(error.response?.data?.message || error.message);
+//   }
+// };
 
   const onSubmitOTP = async (e) => {
     e.preventDefault();
