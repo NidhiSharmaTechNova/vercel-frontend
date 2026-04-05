@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { assets } from '../assets/assets'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -15,8 +15,7 @@ const ResetPassword = () => {
   const [otp, setOtp] = useState('');
   const [isOtpSubmited, setIsOtpSubmited] = useState(false);
 
-  // const { backendUrl } = useContext(AppContext);
-  const backendUrl = ['https://vercel-backend-4-8lrm.onrender.com/'] 
+  const { backendUrl } = useContext(AppContext); 
    
   axios.defaults.withCredentials = true;
 
