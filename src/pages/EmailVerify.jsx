@@ -148,11 +148,22 @@ const EmailVerify = () => {
     try {
       const otpArray = inputRefs.current.map(el => el.value);
       const otp = otpArray.join('');
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        toast.error('Token missing. Please login again.');
+        navigate('/login');
+        return;
+      }
 
       const { data } = await axios.post(
         `${backendUrl}/api/auth/verify-account`,
         { otp },
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
 
       if (data.success) {

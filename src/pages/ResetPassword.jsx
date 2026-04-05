@@ -51,6 +51,9 @@ const ResetPassword = () => {
       if (data.success) {
         toast.success(data.message);
         setIsEmailSent(true);
+        setIsOtpSubmited(false);
+        setOtp('');
+        inputRefs.current = [];
       } else {
         toast.error(data.message);
       }
@@ -91,8 +94,14 @@ const ResetPassword = () => {
     const otpArray = inputRefs.current.map(el => el.value);
     const finalOtp = otpArray.join('');
 
-    setOtp(finalOtp); 
-    setIsOtpSubmited(true); 
+    if (finalOtp.length !== 6) {
+      toast.error('Please enter the full 6-digit OTP');
+      return;
+    }
+
+    setOtp(finalOtp);
+    setIsOtpSubmited(true);
+    toast.success('OTP accepted, please enter your new password');
   }
 
   const onSubmitNewPassword = async (e) => {
