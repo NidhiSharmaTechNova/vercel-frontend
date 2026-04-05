@@ -12,7 +12,7 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   // const [isEmailSent, setIsEmailSent] = useState('');
   const [isEmailSent, setIsEmailSent] = useState(false);
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState(0);
   const [isOtpSubmited, setIsOtpSubmited] = useState(false);
 
   const { backendUrl } = useContext(AppContext);
