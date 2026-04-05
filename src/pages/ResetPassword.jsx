@@ -62,7 +62,7 @@ const ResetPassword = () => {
     const { data } = await axios.post(
       `${backendUrl}/api/auth/send-reset-otp`,
       { email },
-      { timeout: 30000 } // ⭐ timeout fix
+      { timeout: 30000 } 
     );
 
     console.log("OTP Response:", data);
