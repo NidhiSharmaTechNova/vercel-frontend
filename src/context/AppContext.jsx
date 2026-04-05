@@ -55,13 +55,14 @@ export const AppContextProvider = (props) => {
         try {
             axios.defaults.withCredentials = true;
 
-            const token = localStorage.getItem("token");
+            // const token = localStorage.getItem("token");
+            // , {
+            //     headers: {
+            //         Authorization: `Bearer ${token}`
+            //     }
+            // }
 
-            const { data } = await axios.get(`${backendUrl}/api/auth/is-auth`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const { data } = await axios.get(`${backendUrl}/api/auth/is-auth`);
 
             if (data.success) {
                 setIsLoggedin(true);
@@ -76,13 +77,14 @@ export const AppContextProvider = (props) => {
     // ✅ Get User Data
     const getUserData = async () => {
         try {
-            const token = localStorage.getItem("token");
+            // const token = localStorage.getItem("token");
+            // , {
+            //     headers: {
+            //         Authorization: `Bearer ${token}`
+            //     }
+            // }
 
-            const { data } = await axios.get(`${backendUrl}/api/user/data`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const { data } = await axios.get(`${backendUrl}/api/user/data`);
 
             if (data.success) {
                 setUserData(data.userData);
